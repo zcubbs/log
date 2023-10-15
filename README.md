@@ -1,6 +1,6 @@
 # LogWrapper
 
-A versatile Go logging wrapper that allows seamless integration and toggling between various logging libraries such as Logrus, Zap, and the standard log package. It also supports different logging formats like JSON and text, making it a flexible choice for various application needs.
+A versatile Go logging wrapper that allows seamless integration and toggling between various logging libraries such as Logrus, Zap, Charmlog and the standard log package. It also supports different logging formats like JSON and text, making it a flexible choice for various application needs.
 
 [![tag](https://img.shields.io/github/tag/zcubbs/logwrapper)](https://github.com/zcubbs/logwrapper/releases)
 ![Go Version](https://img.shields.io/badge/Go-%3E%3D%201.21-%23007d9c)
