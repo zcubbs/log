@@ -28,19 +28,20 @@ Here is a simple example demonstrating the usage of LogWrapper with different lo
 package main
 
 import (
-	"github.com/zcubbs/logwrapper"
+    "github.com/zcubbs/logwrapper"
+    "github.com/zcubbs/logwrapper/logger"
 )
 
 func main() {
-	logger := logwrapper.NewLogger(
-		logwrapper.LogrusLoggerType, 
-		"MyLogger", 
-		logwrapper.JSONFormat, 
+	l := logwrapper.NewLogger(
+        logger.LogrusLoggerType, 
+		"MyLogger",
+        logger.JSONFormat, 
     )
-	logger.Info("This is an info message in JSON format")
+	l.Info("This is an info message in JSON format")
 
-	logger.SetFormat(logwrapper.TextFormat)
-	logger.Info("This is an info message in text format")
+	l.SetFormat(logger.TextFormat)
+	l.Info("This is an info message in text format")
 }
 ```
 
