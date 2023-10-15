@@ -47,6 +47,10 @@ func (l *ZapLogger) Info(msg string, keysAndValues ...interface{}) {
 	l.logger.Infow(msg, keysAndValues...)
 }
 
+func (l *ZapLogger) Warn(msg string, keysAndValues ...interface{}) {
+	l.logger.Warnw(msg, keysAndValues...)
+}
+
 func (l *ZapLogger) Error(msg string, keysAndValues ...interface{}) {
 	l.logger.Errorw(msg, keysAndValues...)
 }

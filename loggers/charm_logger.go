@@ -28,6 +28,10 @@ func (c *CharmLogger) Info(msg string, keysAndValues ...interface{}) {
 	log.Info(msg, keysAndValues...)
 }
 
+func (c *CharmLogger) Warn(msg string, keysAndValues ...interface{}) {
+	log.Warn(msg, keysAndValues...)
+}
+
 func (c *CharmLogger) Error(msg string, keysAndValues ...interface{}) {
 	log.Error(msg, keysAndValues...)
 }

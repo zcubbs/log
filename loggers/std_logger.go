@@ -49,6 +49,10 @@ func (s *StdLogger) Info(msg string, keysAndValues ...interface{}) {
 	s.logMessage("INFO", msg, keysAndValues...)
 }
 
+func (s *StdLogger) Warn(msg string, keysAndValues ...interface{}) {
+	s.logMessage("WARN", msg, keysAndValues...)
+}
+
 func (s *StdLogger) Error(msg string, keysAndValues ...interface{}) {
 	s.logMessage("ERROR", msg, keysAndValues...)
 }

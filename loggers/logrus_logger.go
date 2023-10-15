@@ -24,6 +24,10 @@ func (l *LogrusLogger) Info(msg string, keysAndValues ...interface{}) {
 	l.Entry.Infof(msg, keysAndValues...)
 }
 
+func (l *LogrusLogger) Warn(msg string, keysAndValues ...interface{}) {
+	l.Entry.Warnf(msg, keysAndValues...)
+}
+
 func (l *LogrusLogger) Error(msg string, keysAndValues ...interface{}) {
 	l.Entry.Errorf(msg, keysAndValues...)
 }
