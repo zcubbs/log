@@ -2,7 +2,7 @@ package loggers
 
 import (
 	log "github.com/sirupsen/logrus"
-	lw "github.com/zcubbs/logwrapper"
+	"github.com/zcubbs/logwrapper/logger"
 )
 
 type LogrusLogger struct {
@@ -10,10 +10,10 @@ type LogrusLogger struct {
 	baseLogger *log.Logger
 }
 
-func NewLogrusLogger(name string) lw.Logger {
-	logger := log.New()
-	logger.SetFormatter(&log.JSONFormatter{})
-	return &LogrusLogger{logger.WithField("logger_name", name), logger}
+func NewLogrusLogger(name string) logger.Logger {
+	l := log.New()
+	l.SetFormatter(&log.JSONFormatter{})
+	return &LogrusLogger{l.WithField("logger_name", name), l}
 }
 
 func (l *LogrusLogger) Debug(msg string, keysAndValues ...interface{}) {
@@ -34,7 +34,7 @@ func (l *LogrusLogger) Fatal(msg string, keysAndValues ...interface{}) {
 
 func (l *LogrusLogger) SetFormat(format string) {
 	switch format {
-	case lw.JSONFormat:
+	case logger.JSONFormat:
 		l.baseLogger.SetFormatter(&log.JSONFormatter{})
 	default:
 		l.baseLogger.SetFormatter(&log.TextFormatter{})

@@ -2,7 +2,7 @@ package loggers
 
 import (
 	"github.com/charmbracelet/log"
-	lw "github.com/zcubbs/logwrapper"
+	"github.com/zcubbs/logwrapper/logger"
 	"os"
 )
 
@@ -11,12 +11,12 @@ type CharmLogger struct {
 	baseLogger *log.Logger
 }
 
-func NewCharmLogger(name string) lw.Logger {
-	logger := log.New(os.Stderr)
+func NewCharmLogger(name string) logger.Logger {
+	l := log.New(os.Stderr)
 
 	return &CharmLogger{
-		Logger:     logger.With("logger_name", name),
-		baseLogger: logger,
+		Logger:     l.With("logger_name", name),
+		baseLogger: l,
 	}
 }
 
@@ -38,7 +38,7 @@ func (c *CharmLogger) Fatal(msg string, keysAndValues ...interface{}) {
 
 func (c *CharmLogger) SetFormat(format string) {
 	switch format {
-	case lw.JSONFormat:
+	case logger.JSONFormat:
 		c.baseLogger.SetFormatter(log.JSONFormatter)
 	default:
 		c.baseLogger.SetFormatter(log.TextFormatter)

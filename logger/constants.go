@@ -1,4 +1,4 @@
-package logwrapper
+package logger
 
 // Logger Types
 const (

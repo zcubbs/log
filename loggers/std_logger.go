@@ -3,7 +3,7 @@ package loggers
 import (
 	"encoding/json"
 	"fmt"
-	lw "github.com/zcubbs/logwrapper"
+	"github.com/zcubbs/logwrapper/logger"
 	"log"
 	"os"
 )
@@ -13,9 +13,9 @@ type StdLogger struct {
 	name   string
 }
 
-func NewStdLogger(name string) lw.Logger {
+func NewStdLogger(name string) logger.Logger {
 	l := &StdLogger{name: name}
-	l.SetFormat(lw.TextFormat) // setting default to TextFormat
+	l.SetFormat(logger.TextFormat) // setting default to TextFormat
 	return l
 }
 
@@ -24,7 +24,7 @@ func (s *StdLogger) SetFormat(format string) {
 }
 
 func (s *StdLogger) logMessage(level string, msg string, keysAndValues ...interface{}) {
-	if s.format == lw.JSONFormat {
+	if s.format == logger.JSONFormat {
 		logMessage := map[string]interface{}{
 			"level": level,
 			"name":  s.name,
