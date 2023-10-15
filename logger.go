@@ -6,7 +6,7 @@ import (
 )
 
 // NewLogger is a factory function that creates a new logger based on the given type.
-func NewLogger(loggerType string, name string, format string) logger.Logger {
+func NewLogger(loggerType string, name string, format string) *logger.Logger {
 	l := logger.Logger(nil)
 
 	switch loggerType {
@@ -23,5 +23,5 @@ func NewLogger(loggerType string, name string, format string) logger.Logger {
 	}
 
 	l.SetFormat(format)
-	return l
+	return &l
 }
