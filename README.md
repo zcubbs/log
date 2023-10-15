@@ -32,7 +32,11 @@ import (
 )
 
 func main() {
-	logger := logwrapper.NewLogger(logwrapper.LogrusLoggerType, "MyLogger", logwrapper.JSONFormat)
+	logger := logwrapper.NewLogger(
+		logwrapper.LogrusLoggerType, 
+		"MyLogger", 
+		logwrapper.JSONFormat, 
+    )
 	logger.Info("This is an info message in JSON format")
 
 	logger.SetFormat(logwrapper.TextFormat)
@@ -46,6 +50,7 @@ For a more comprehensive example, please refer to [`example.go`](./examples/exam
 
 - [Logrus](https://github.com/sirupsen/logrus)
 - [Zap](https://github.com/uber-go/zap)
+- [Charmlog](https://github.com/charmbracelet/log)
 - Standard log package
 
 ## Supported Formats
