@@ -61,3 +61,7 @@ func (s *StdLogger) Fatal(msg string, keysAndValues ...interface{}) {
 	s.logMessage("FATAL", msg, keysAndValues...)
 	os.Exit(1)
 }
+
+func (s *StdLogger) SetLevel(_ string) {
+	// noop
+}

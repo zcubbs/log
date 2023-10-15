@@ -62,3 +62,22 @@ func (l *ZapLogger) Fatal(msg string, keysAndValues ...interface{}) {
 func (l *ZapLogger) SetFormat(format string) {
 	l.initLogger(l.logger.Desugar().Name(), format)
 }
+
+func (l *ZapLogger) SetLevel(level string) {
+	var zapLevel zapcore.Level
+	switch level {
+	case logger.DebugLevel:
+		zapLevel = zapcore.DebugLevel
+	case logger.InfoLevel:
+		zapLevel = zapcore.InfoLevel
+	case logger.WarnLevel:
+		zapLevel = zapcore.WarnLevel
+	case logger.ErrorLevel:
+		zapLevel = zapcore.ErrorLevel
+	case logger.FatalLevel:
+		zapLevel = zapcore.FatalLevel
+	default:
+		zapLevel = zapcore.InfoLevel
+	}
+	l.logger.Desugar().Core().Enabled(zapLevel)
+}

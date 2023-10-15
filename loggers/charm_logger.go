@@ -48,3 +48,18 @@ func (c *CharmLogger) SetFormat(format string) {
 		c.baseLogger.SetFormatter(log.TextFormatter)
 	}
 }
+
+func (c *CharmLogger) SetLevel(level string) {
+	switch level {
+	case logger.DebugLevel:
+		c.baseLogger.SetLevel(log.DebugLevel)
+	case logger.InfoLevel:
+		c.baseLogger.SetLevel(log.InfoLevel)
+	case logger.WarnLevel:
+		c.baseLogger.SetLevel(log.WarnLevel)
+	case logger.ErrorLevel:
+		c.baseLogger.SetLevel(log.ErrorLevel)
+	case logger.FatalLevel:
+		c.baseLogger.SetLevel(log.FatalLevel)
+	}
+}

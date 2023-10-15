@@ -23,5 +23,6 @@ func NewLogger(loggerType string, name string, format string) logger.Logger {
 	}
 
 	l.SetFormat(format)
+	l.SetLevel(logger.InfoLevel)
 	return l
 }

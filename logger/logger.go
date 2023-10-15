@@ -8,4 +8,5 @@ type Logger interface {
 	Error(msg string, keysAndValues ...interface{})
 	Fatal(msg string, keysAndValues ...interface{})
 	SetFormat(format string)
+	SetLevel(level string)
 }

@@ -44,3 +44,16 @@ func (l *LogrusLogger) SetFormat(format string) {
 		l.baseLogger.SetFormatter(&log.TextFormatter{})
 	}
 }
+
+func (l *LogrusLogger) SetLevel(level string) {
+	switch level {
+	case logger.DebugLevel:
+		l.baseLogger.SetLevel(log.DebugLevel)
+	case logger.InfoLevel:
+		l.baseLogger.SetLevel(log.InfoLevel)
+	case logger.WarnLevel:
+		l.baseLogger.SetLevel(log.WarnLevel)
+	case logger.ErrorLevel:
+		l.baseLogger.SetLevel(log.ErrorLevel)
+	}
+}

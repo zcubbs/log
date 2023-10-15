@@ -13,3 +13,12 @@ const (
 	TextFormat = "text"
 	JSONFormat = "json"
 )
+
+// Logger Levels
+const (
+	DebugLevel = "debug"
+	InfoLevel  = "info"
+	WarnLevel  = "warn"
+	ErrorLevel = "error"
+	FatalLevel = "fatal"
+)
