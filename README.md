@@ -1,4 +1,4 @@
-# LogWrapper
+# Log
 
 A versatile Go logging wrapper that allows seamless integration and toggling between various logging libraries such as Logrus, Zap, Charmlog and the standard log package. It also supports different logging formats like JSON and text, making it a flexible choice for various application needs.
 
@@ -17,7 +17,7 @@ A versatile Go logging wrapper that allows seamless integration and toggling bet
 To install the LogWrapper package, run the following command:
 
 ```bash
-go get github.com/zcubbs/logwrapper
+go get github.com/zcubbs/log
 ```
 
 ## Usage
@@ -28,20 +28,15 @@ Here is a simple example demonstrating the usage of LogWrapper with different lo
 package main
 
 import (
-    "github.com/zcubbs/logwrapper"
-    "github.com/zcubbs/logwrapper/logger"
+    "github.com/zcubbs/log"
+    "github.com/zcubbs/log/structuredlogger"
 )
 
 func main() {
-	l := logwrapper.NewLogger(
-        logger.LogrusLoggerType, 
-		"MyLogger",
-        logger.JSONFormat, 
-    )
-	l.Info("This is an info message in JSON format")
+    log.Info("This is an info message in JSON format")
 
-	l.SetFormat(logger.TextFormat)
-	l.Info("This is an info message in text format")
+    log.SetFormat(structuredlogger.TextFormat)
+    log.Info("This is an info message in text format")
 }
 ```
 
