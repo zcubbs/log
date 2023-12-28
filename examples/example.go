@@ -6,6 +6,14 @@ import (
 )
 
 func main() {
+	// Quick use
+	log.Info("This is the default log message")
+
+	log.SetLoggerType(structuredlogger.CharmLoggerType)
+	log.Info("This is a charm logger")
+
+	// Creating your custom logger
+
 	// Creating a new Logrus logger in JSON format
 	logrusLogger := log.NewLogger(structuredlogger.LogrusLoggerType, "LogrusLogger", structuredlogger.JSONFormat)
 	logrusLogger.Info("This is a Logrus logger in JSON format")
