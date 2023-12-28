@@ -1,4 +1,4 @@
-package logger
+package structuredlogger
 
 // Logger Types
 const (

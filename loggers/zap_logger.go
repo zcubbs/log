@@ -1,7 +1,7 @@
 package loggers
 
 import (
-	"github.com/zcubbs/logwrapper/logger"
+	"github.com/zcubbs/log/structuredlogger"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
 )
@@ -10,9 +10,9 @@ type ZapLogger struct {
 	logger *zap.SugaredLogger
 }
 
-func NewZapLogger(name string) logger.Logger {
+func NewZapLogger(name string) structuredlogger.StructuredLogger {
 	zapLogger := &ZapLogger{}
-	zapLogger.initLogger(name, logger.TextFormat) // default to text format
+	zapLogger.initLogger(name, structuredlogger.TextFormat) // default to text format
 	return zapLogger
 }
 
@@ -25,9 +25,9 @@ func (l *ZapLogger) initLogger(name string, format string) {
 	cfg.OutputPaths = []string{"stdout"}
 
 	switch format {
-	case logger.JSONFormat:
+	case structuredlogger.JSONFormat:
 		cfg.Encoding = "json"
-	case logger.TextFormat:
+	case structuredlogger.TextFormat:
 		cfg.Encoding = "console"
 	}
 
@@ -66,15 +66,15 @@ func (l *ZapLogger) SetFormat(format string) {
 func (l *ZapLogger) SetLevel(level string) {
 	var zapLevel zapcore.Level
 	switch level {
-	case logger.DebugLevel:
+	case structuredlogger.DebugLevel:
 		zapLevel = zapcore.DebugLevel
-	case logger.InfoLevel:
+	case structuredlogger.InfoLevel:
 		zapLevel = zapcore.InfoLevel
-	case logger.WarnLevel:
+	case structuredlogger.WarnLevel:
 		zapLevel = zapcore.WarnLevel
-	case logger.ErrorLevel:
+	case structuredlogger.ErrorLevel:
 		zapLevel = zapcore.ErrorLevel
-	case logger.FatalLevel:
+	case structuredlogger.FatalLevel:
 		zapLevel = zapcore.FatalLevel
 	default:
 		zapLevel = zapcore.InfoLevel

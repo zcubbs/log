@@ -1,18 +1,18 @@
 package loggers
 
 import (
-	"github.com/charmbracelet/log"
-	"github.com/zcubbs/logwrapper/logger"
+	charmlog "github.com/charmbracelet/log"
+	"github.com/zcubbs/log/structuredlogger"
 	"os"
 )
 
 type CharmLogger struct {
-	*log.Logger
-	baseLogger *log.Logger
+	*charmlog.Logger
+	baseLogger *charmlog.Logger
 }
 
-func NewCharmLogger(name string) logger.Logger {
-	l := log.New(os.Stderr)
+func NewCharmLogger(name string) structuredlogger.StructuredLogger {
+	l := charmlog.New(os.Stderr)
 
 	return &CharmLogger{
 		Logger:     l.With("logger_name", name),
@@ -21,45 +21,45 @@ func NewCharmLogger(name string) logger.Logger {
 }
 
 func (c *CharmLogger) Debug(msg string, keysAndValues ...interface{}) {
-	log.Debug(msg, keysAndValues...)
+	charmlog.Debug(msg, keysAndValues...)
 }
 
 func (c *CharmLogger) Info(msg string, keysAndValues ...interface{}) {
-	log.Info(msg, keysAndValues...)
+	charmlog.Info(msg, keysAndValues...)
 }
 
 func (c *CharmLogger) Warn(msg string, keysAndValues ...interface{}) {
-	log.Warn(msg, keysAndValues...)
+	charmlog.Warn(msg, keysAndValues...)
 }
 
 func (c *CharmLogger) Error(msg string, keysAndValues ...interface{}) {
-	log.Error(msg, keysAndValues...)
+	charmlog.Error(msg, keysAndValues...)
 }
 
 func (c *CharmLogger) Fatal(msg string, keysAndValues ...interface{}) {
-	log.Fatal(msg, keysAndValues...)
+	charmlog.Fatal(msg, keysAndValues...)
 }
 
 func (c *CharmLogger) SetFormat(format string) {
 	switch format {
-	case logger.JSONFormat:
-		c.baseLogger.SetFormatter(log.JSONFormatter)
+	case structuredlogger.JSONFormat:
+		c.baseLogger.SetFormatter(charmlog.JSONFormatter)
 	default:
-		c.baseLogger.SetFormatter(log.TextFormatter)
+		c.baseLogger.SetFormatter(charmlog.TextFormatter)
 	}
 }
 
 func (c *CharmLogger) SetLevel(level string) {
 	switch level {
-	case logger.DebugLevel:
-		c.baseLogger.SetLevel(log.DebugLevel)
-	case logger.InfoLevel:
-		c.baseLogger.SetLevel(log.InfoLevel)
-	case logger.WarnLevel:
-		c.baseLogger.SetLevel(log.WarnLevel)
-	case logger.ErrorLevel:
-		c.baseLogger.SetLevel(log.ErrorLevel)
-	case logger.FatalLevel:
-		c.baseLogger.SetLevel(log.FatalLevel)
+	case structuredlogger.DebugLevel:
+		c.baseLogger.SetLevel(charmlog.DebugLevel)
+	case structuredlogger.InfoLevel:
+		c.baseLogger.SetLevel(charmlog.InfoLevel)
+	case structuredlogger.WarnLevel:
+		c.baseLogger.SetLevel(charmlog.WarnLevel)
+	case structuredlogger.ErrorLevel:
+		c.baseLogger.SetLevel(charmlog.ErrorLevel)
+	case structuredlogger.FatalLevel:
+		c.baseLogger.SetLevel(charmlog.FatalLevel)
 	}
 }

@@ -1,7 +1,7 @@
-package logger
+package structuredlogger
 
-// Logger is a generic interface for logging with different loggers.
-type Logger interface {
+// StructuredLogger is a generic interface for logging with different loggers.
+type StructuredLogger interface {
 	Debug(msg string, keysAndValues ...interface{})
 	Info(msg string, keysAndValues ...interface{})
 	Warn(msg string, keysAndValues ...interface{})

@@ -1,4 +1,4 @@
-module github.com/zcubbs/logwrapper
+module github.com/zcubbs/log
 
 go 1.21
 

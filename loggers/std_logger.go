@@ -3,8 +3,8 @@ package loggers
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/zcubbs/logwrapper/logger"
-	"log"
+	"github.com/zcubbs/log/structuredlogger"
+	stdlog "log"
 	"os"
 )
 
@@ -13,9 +13,9 @@ type StdLogger struct {
 	name   string
 }
 
-func NewStdLogger(name string) logger.Logger {
+func NewStdLogger(name string) structuredlogger.StructuredLogger {
 	l := &StdLogger{name: name}
-	l.SetFormat(logger.TextFormat) // setting default to TextFormat
+	l.SetFormat(structuredlogger.TextFormat) // setting default to TextFormat
 	return l
 }
 
@@ -24,7 +24,7 @@ func (s *StdLogger) SetFormat(format string) {
 }
 
 func (s *StdLogger) logMessage(level string, msg string, keysAndValues ...interface{}) {
-	if s.format == logger.JSONFormat {
+	if s.format == structuredlogger.JSONFormat {
 		logMessage := map[string]interface{}{
 			"level": level,
 			"name":  s.name,
@@ -35,9 +35,9 @@ func (s *StdLogger) logMessage(level string, msg string, keysAndValues ...interf
 			logMessage[key] = keysAndValues[i+1]
 		}
 		jsonMessage, _ := json.Marshal(logMessage)
-		log.Println(string(jsonMessage))
+		stdlog.Println(string(jsonMessage))
 	} else {
-		log.Printf("%s [%s]: %s %v", level, s.name, msg, keysAndValues)
+		stdlog.Printf("%s [%s]: %s %v", level, s.name, msg, keysAndValues)
 	}
 }
 

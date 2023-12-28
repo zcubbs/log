@@ -1,18 +1,18 @@
 package loggers
 
 import (
-	log "github.com/sirupsen/logrus"
-	"github.com/zcubbs/logwrapper/logger"
+	logruslog "github.com/sirupsen/logrus"
+	"github.com/zcubbs/log/structuredlogger"
 )
 
 type LogrusLogger struct {
-	*log.Entry
-	baseLogger *log.Logger
+	*logruslog.Entry
+	baseLogger *logruslog.Logger
 }
 
-func NewLogrusLogger(name string) logger.Logger {
-	l := log.New()
-	l.SetFormatter(&log.JSONFormatter{})
+func NewLogrusLogger(name string) structuredlogger.StructuredLogger {
+	l := logruslog.New()
+	l.SetFormatter(&logruslog.JSONFormatter{})
 	return &LogrusLogger{l.WithField("logger_name", name), l}
 }
 
@@ -38,22 +38,22 @@ func (l *LogrusLogger) Fatal(msg string, keysAndValues ...interface{}) {
 
 func (l *LogrusLogger) SetFormat(format string) {
 	switch format {
-	case logger.JSONFormat:
-		l.baseLogger.SetFormatter(&log.JSONFormatter{})
+	case structuredlogger.JSONFormat:
+		l.baseLogger.SetFormatter(&logruslog.JSONFormatter{})
 	default:
-		l.baseLogger.SetFormatter(&log.TextFormatter{})
+		l.baseLogger.SetFormatter(&logruslog.TextFormatter{})
 	}
 }
 
 func (l *LogrusLogger) SetLevel(level string) {
 	switch level {
-	case logger.DebugLevel:
-		l.baseLogger.SetLevel(log.DebugLevel)
-	case logger.InfoLevel:
-		l.baseLogger.SetLevel(log.InfoLevel)
-	case logger.WarnLevel:
-		l.baseLogger.SetLevel(log.WarnLevel)
-	case logger.ErrorLevel:
-		l.baseLogger.SetLevel(log.ErrorLevel)
+	case structuredlogger.DebugLevel:
+		l.baseLogger.SetLevel(logruslog.DebugLevel)
+	case structuredlogger.InfoLevel:
+		l.baseLogger.SetLevel(logruslog.InfoLevel)
+	case structuredlogger.WarnLevel:
+		l.baseLogger.SetLevel(logruslog.WarnLevel)
+	case structuredlogger.ErrorLevel:
+		l.baseLogger.SetLevel(logruslog.ErrorLevel)
 	}
 }
