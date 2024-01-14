@@ -8,58 +8,58 @@ import (
 
 type CharmLogger struct {
 	*charmlog.Logger
-	baseLogger *charmlog.Logger
 }
 
-func NewCharmLogger(name string) structuredlogger.StructuredLogger {
-	l := charmlog.New(os.Stderr)
+func NewCharmLogger(_ string) structuredlogger.StructuredLogger {
+	l := charmlog.NewWithOptions(os.Stderr, charmlog.Options{
+		ReportTimestamp: true,
+	})
 
 	return &CharmLogger{
-		Logger:     l.With("logger_name", name),
-		baseLogger: l,
+		Logger: l,
 	}
 }
 
 func (c *CharmLogger) Debug(msg string, keysAndValues ...interface{}) {
-	c.baseLogger.Debug(msg, keysAndValues...)
+	c.Logger.Debug(msg, keysAndValues...)
 }
 
 func (c *CharmLogger) Info(msg string, keysAndValues ...interface{}) {
-	c.baseLogger.Info(msg, keysAndValues...)
+	c.Logger.Info(msg, keysAndValues...)
 }
 
 func (c *CharmLogger) Warn(msg string, keysAndValues ...interface{}) {
-	c.baseLogger.Warn(msg, keysAndValues...)
+	c.Logger.Warn(msg, keysAndValues...)
 }
 
 func (c *CharmLogger) Error(msg string, keysAndValues ...interface{}) {
-	c.baseLogger.Error(msg, keysAndValues...)
+	c.Logger.Error(msg, keysAndValues...)
 }
 
 func (c *CharmLogger) Fatal(msg string, keysAndValues ...interface{}) {
-	c.baseLogger.Fatal(msg, keysAndValues...)
+	c.Logger.Fatal(msg, keysAndValues...)
 }
 
 func (c *CharmLogger) SetFormat(format string) {
 	switch format {
 	case structuredlogger.JSONFormat:
-		c.baseLogger.SetFormatter(charmlog.JSONFormatter)
+		c.Logger.SetFormatter(charmlog.JSONFormatter)
 	default:
-		c.baseLogger.SetFormatter(charmlog.TextFormatter)
+		c.Logger.SetFormatter(charmlog.TextFormatter)
 	}
 }
 
 func (c *CharmLogger) SetLevel(level string) {
 	switch level {
 	case structuredlogger.DebugLevel:
-		c.baseLogger.SetLevel(charmlog.DebugLevel)
+		c.Logger.SetLevel(charmlog.DebugLevel)
 	case structuredlogger.InfoLevel:
-		c.baseLogger.SetLevel(charmlog.InfoLevel)
+		c.Logger.SetLevel(charmlog.InfoLevel)
 	case structuredlogger.WarnLevel:
-		c.baseLogger.SetLevel(charmlog.WarnLevel)
+		c.Logger.SetLevel(charmlog.WarnLevel)
 	case structuredlogger.ErrorLevel:
-		c.baseLogger.SetLevel(charmlog.ErrorLevel)
+		c.Logger.SetLevel(charmlog.ErrorLevel)
 	case structuredlogger.FatalLevel:
-		c.baseLogger.SetLevel(charmlog.FatalLevel)
+		c.Logger.SetLevel(charmlog.FatalLevel)
 	}
 }
