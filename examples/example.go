@@ -13,6 +13,13 @@ func main() {
 	log.Info("This is a charm logger")
 
 	// Creating your custom logger
+	log.SetLogger(
+		log.NewLogger(
+			structuredlogger.LogrusLoggerType,
+			"CustomLogger",
+			structuredlogger.JSONFormat,
+		),
+	)
 
 	// Creating a new Logrus logger in JSON format
 	logrusLogger := log.NewLogger(structuredlogger.LogrusLoggerType, "LogrusLogger", structuredlogger.JSONFormat)
@@ -37,4 +44,13 @@ func main() {
 	// Switching the Standard logger to text format
 	stdLogger.SetFormat(structuredlogger.TextFormat)
 	stdLogger.Info("This is a Standard logger in text format")
+
+	// Levels
+	log.SetFormat(structuredlogger.JSONFormat)
+	log.SetLevel(structuredlogger.DebugLevel)
+	log.Debug("This is a debug message")
+	log.Info("This is an info message")
+	log.Warn("This is a warning message")
+	log.Error("This is an error message")
+	log.Fatal("This is a fatal message")
 }

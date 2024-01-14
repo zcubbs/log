@@ -51,11 +51,6 @@ func NewLogger(loggerType string, name string, format string) Logger {
 	return l
 }
 
-// L returns the logger instance.
-func L() Logger {
-	return *logw
-}
-
 func GetLogger() Logger {
 	return *logw
 }
@@ -85,7 +80,7 @@ func Fatal(msg string, keysAndValues ...interface{}) {
 }
 
 func SetLevel(level string) {
-	loggerLevel := level
+	loggerLevel = level
 	GetLogger().SetLevel(loggerLevel)
 }
 
