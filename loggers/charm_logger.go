@@ -21,23 +21,23 @@ func NewCharmLogger(name string) structuredlogger.StructuredLogger {
 }
 
 func (c *CharmLogger) Debug(msg string, keysAndValues ...interface{}) {
-	charmlog.Debug(msg, keysAndValues...)
+	c.baseLogger.Debug(msg, keysAndValues...)
 }
 
 func (c *CharmLogger) Info(msg string, keysAndValues ...interface{}) {
-	charmlog.Info(msg, keysAndValues...)
+	c.baseLogger.Info(msg, keysAndValues...)
 }
 
 func (c *CharmLogger) Warn(msg string, keysAndValues ...interface{}) {
-	charmlog.Warn(msg, keysAndValues...)
+	c.baseLogger.Warn(msg, keysAndValues...)
 }
 
 func (c *CharmLogger) Error(msg string, keysAndValues ...interface{}) {
-	charmlog.Error(msg, keysAndValues...)
+	c.baseLogger.Error(msg, keysAndValues...)
 }
 
 func (c *CharmLogger) Fatal(msg string, keysAndValues ...interface{}) {
-	charmlog.Fatal(msg, keysAndValues...)
+	c.baseLogger.Fatal(msg, keysAndValues...)
 }
 
 func (c *CharmLogger) SetFormat(format string) {
